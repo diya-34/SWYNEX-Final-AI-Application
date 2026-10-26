@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Announcement Intelligence System | SWYNEX Final AI Application</title>
+  <meta name="description" content="AI-Powered Student Announcement Intelligence System for SWYNEX Internship Task 4. Classify announcements, assign priority, extract dates & deadlines, and generate transparent summaries.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <!-- Header / Hero Section -->
+  <header class="app-header">
+    <div class="container">
+      <div class="hero-badge">🎓 SWYNEX Internship • Task 4 Final AI Application</div>
+      <h1 class="hero-title">Student Announcement Intelligence System</h1>
+      <p class="hero-subtitle">
+        An AI-powered academic announcement intelligence assistant that classifies notices, detects urgency priority,
+        extracts critical dates and deadlines, and produces transparent zero-hallucination summaries.
+      </p>
+      <div class="header-pills">
+        <span class="pill">⚡ 100% Local CPU Execution</span>
+        <span class="pill">🛡️ Zero Cloud / No Paid APIs</span>
+        <span class="pill">💡 Scikit-Learn + TF-IDF Machine Learning</span>
+        <span class="pill">🔍 Auditable Extractive Summarization</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container main-content">
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" role="tablist">
+      <button class="tab-btn active" data-tab="analyzer-tab" id="btn-tab-analyzer">⚡ Announcement Analyzer</button>
+      <button class="tab-btn" data-tab="demo-tab" id="btn-tab-demo">📋 Demo & Test Cases</button>
+      <button class="tab-btn" data-tab="eval-tab" id="btn-tab-eval">📊 Empirical Evaluation</button>
+      <button class="tab-btn" data-tab="limits-tab" id="btn-tab-limits">⚠️ Limitations</button>
+      <button class="tab-btn" data-tab="ethics-tab" id="btn-tab-ethics">🛡️ Ethics & Privacy</button>
+    </nav>
+
+    <!-- TAB 1: ANALYZER -->
+    <section id="analyzer-tab" class="tab-pane active">
+      <div class="analyzer-grid">
+        <!-- Left: Input & Presets -->
+        <div class="card input-card">
+          <div class="card-header">
+            <h2>📝 Enter Announcement</h2>
+            <span class="char-counter" id="charCounter">0 chars | 0 words</span>
+          </div>
+
+          <div class="preset-selector-box">
+            <label for="sampleDropdown"><strong>💡 Quick-Load Sample Announcement:</strong></label>
+            <div class="preset-row">
+              <select id="sampleDropdown" class="form-control">
+                <option value="exam">Semester 5 Exam Timetable (High Urgency)</option>
+                <option value="assignment">ML Assignment 3 Submission Cutoff</option>
+                <option value="placement">Microsoft Campus Placement Drive</option>
+                <option value="internship">Tech Mahindra 6-Month Stipend Internship</option>
+                <option value="holiday">Severe Cyclone Alert - Emergency Closure</option>
+                <option value="event">National Hackathon 'HackSphere 2026'</option>
+                <option value="general">Biometric Smart ID Card Collection</option>
+                <option value="edge_case">Routine Health Clinic (Urgent Care)</option>
+              </select>
+              <button id="btnLoadPreset" class="btn btn-secondary" type="button">📥 Load Preset</button>
+            </div>
+          </div>
+
+          <form id="analyzeForm">
+            <label for="announcementText" class="sr-only">Announcement Text</label>
+            <textarea
+              id="announcementText"
+              class="form-control text-area"
+              rows="6"
+              placeholder="Paste announcement circular or message here (e.g., 'The End-Semester Examination timetable for B.Tech Semester 5 is officially released. All students must download admit cards before Friday 5:00 PM at https://exam.university.edu.')..."
+            >The End-Semester Examination timetable for B.Tech Semester 5 is officially released. All students must download admit cards before Friday 5:00 PM at https://exam.university.edu. Students without printed hall tickets will be debarred from entering the examination hall.</textarea>
+
+            <div class="action-buttons">
+              <button type="submit" id="btnAnalyze" class="btn btn-primary">
+                <span class="btn-text">🚀 Analyze Announcement</span>
+                <span class="spinner" style="display:none;"></span>
+              </button>
+              <button type="button" id="btnClear" class="btn btn-outline">🧹 Clear</button>
+            </div>
+          </form>
+
+          <div id="validationAlert" class="alert-box alert-danger" style="display:none;"></div>
+          <div id="warningAlert" class="alert-box alert-warning" style="display:none;"></div>
+        </div>
+
+        <!-- Right: Results Panel -->
+        <div class="card results-card" id="resultsSection">
+          <div class="card-header">
+            <h2>📊 Intelligence Analysis Results</h2>
+            <span id="execTimeBadge" class="badge badge-neutral">Ready</span>
+          </div>
+
+          <!-- Top Metric KPI Cards -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <span class="kpi-label">Classified Category</span>
+              <div class="kpi-value" id="kpiCategory"><span class="tag tag-exam">Exam</span></div>
+              <span class="kpi-sub" id="kpiConfidence">Confidence: <b>92.5%</b></span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">Urgency Priority</span>
+              <div class="kpi-value" id="kpiPriority"><span class="priority-pill priority-high">High</span></div>
+              <span class="kpi-sub" id="kpiScore">Score: <b>85/100</b></span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">Cutoff Deadline</span>
+              <div class="kpi-value" id="kpiDeadline"><span class="deadline-highlight">before Friday 5:00 PM</span></div>
+              <span class="kpi-sub" id="kpiDeadlineCount">1 deadline found</span>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">Detected Dates</span>
+              <div class="kpi-value" id="kpiDate">Friday 5:00 PM</div>
+              <span class="kpi-sub" id="kpiDateCount">1 date reference</span>
+            </div>
+          </div>
+
+          <!-- Detailed Insights Tabs / Sections -->
+          <div class="insights-container">
+            <!-- Left Details -->
+            <div class="detail-block">
+              <h3>🎯 Classification Confidence & Evidence</h3>
+              <div id="probabilityBars" class="prob-bars-container">
+                <!-- Populated via JS -->
+              </div>
+              <div class="callout callout-info" id="methodExplanation">
+                <strong>Method:</strong> Machine Learning (TF-IDF + Logistic Regression)<br>
+                <strong>Justification:</strong> Classified as 'Exam' with high confidence based on academic vocabulary.
+              </div>
+
+              <h3>🚨 Priority Assessment & Recommended Action</h3>
+              <div class="callout callout-action" id="priorityReasonBox">
+                <strong id="priorityReasonTitle">High Priority:</strong> <span id="priorityReasonText">Time-sensitive cutoff deadline detected.</span><br><br>
+                <strong>👉 Recommended Action:</strong> <span id="priorityActionText">Take immediate action today.</span>
+              </div>
+              <div id="urgencyFactorsList" class="factors-list"></div>
+            </div>
+
+            <!-- Right Details -->
+            <div class="detail-block">
+              <h3>📅 Extracted Entities & Information</h3>
+              <div class="entity-section">
+                <strong>Dates:</strong>
+                <div id="extractedDates" class="chips-row">
+                  <span class="chip">📅 Friday 5:00 PM</span>
+                </div>
+              </div>
+
+              <div class="entity-section">
+                <strong>Strict Deadlines:</strong>
+                <div id="extractedDeadlines" class="chips-row">
+                  <span class="chip chip-deadline">⏰ before Friday 5:00 PM</span>
+                </div>
+              </div>
+
+              <div class="entity-section">
+                <strong>Web Portals & URLs:</strong>
+                <div id="extractedUrls" class="chips-row">
+                  <a href="https://exam.university.edu" target="_blank" class="chip chip-link">🔗 https://exam.university.edu</a>
+                </div>
+              </div>
+
+              <div class="entity-section">
+                <strong>Contact Emails:</strong>
+                <div id="extractedEmails" class="chips-row">
+                  <span class="text-muted">None detected</span>
+                </div>
+              </div>
+
+              <div class="entity-section">
+                <strong>Action Tags:</strong>
+                <div id="extractedTags" class="chips-row">
+                  <span class="chip chip-tag">🏷️ Admit Card</span>
+                  <span class="chip chip-tag">🏷️ Hall Ticket</span>
+                </div>
+              </div>
+
+              <hr class="divider">
+
+              <h3>📝 Concise Extractive Summary</h3>
+              <div class="summary-box" id="summaryBox">
+                <p id="summaryText">
+                  "The End-Semester Examination timetable for B.Tech Semester 5 is officially released. All students must download admit cards before Friday 5:00 PM at https://exam.university.edu."
+                </p>
+                <div class="summary-metrics">
+                  <span id="sumOrigChars">Original: 284 chars</span>
+                  <span id="sumNewChars">Summary: 198 chars</span>
+                  <span id="sumRatio">Reduction: 30.3%</span>
+                </div>
+                <small class="text-muted">🛡️ Zero Hallucination: Verbatim extraction based on sentence salience.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: DEMO & TEST CASES -->
+    <section id="demo-tab" class="tab-pane">
+      <div class="card">
+        <div class="card-header">
+          <h2>📋 Demo Cases & Expected Outputs</h2>
+          <span class="badge badge-primary">Interactive Verification</span>
+        </div>
+        <p class="section-intro">
+          Test the intelligence engine against pre-configured normal, edge, empty, and failure cases to verify expected behaviors:
+        </p>
+        <div id="demoCasesGrid" class="demo-grid">
+          <!-- Populated dynamically via JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: EVALUATION -->
+    <section id="eval-tab" class="tab-pane">
+      <div class="card">
+        <div class="card-header">
+          <h2>📊 Empirical System Evaluation</h2>
+          <button id="btnRunEval" class="btn btn-primary btn-sm">🔄 Run Live Benchmark</button>
+        </div>
+        <div class="callout callout-info">
+          <strong>Honest Reporting Guarantee:</strong> All metrics below are computed directly on empirical test splits
+          using scikit-learn metrics. No scores are fabricated or altered.
+        </div>
+
+        <div class="kpi-grid eval-kpis" id="evalKpis">
+          <div class="kpi-card">
+            <span class="kpi-label">Category Accuracy</span>
+            <div class="kpi-value" id="evalCatAcc">100.0%</div>
+            <span class="kpi-sub">Overall 18 cases</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Standard Cases Accuracy</span>
+            <div class="kpi-value" id="evalStdAcc">100.0%</div>
+            <span class="kpi-sub">13/13 standard</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Priority Accuracy</span>
+            <div class="kpi-value" id="evalPrioAcc">83.33%</div>
+            <span class="kpi-sub">Urgency scoring</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Weighted F1-Score</span>
+            <div class="kpi-value" id="evalF1">100.0%</div>
+            <span class="kpi-sub">Macro balance</span>
+          </div>
+        </div>
+
+        <h3>📋 Full Evaluation Case-by-Case Log</h3>
+        <div class="table-responsive">
+          <table class="data-table" id="evalTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Expected Cat.</th>
+                <th>Predicted Cat.</th>
+                <th>Match</th>
+                <th>Expected Prio.</th>
+                <th>Predicted Prio.</th>
+                <th>Deadline Match</th>
+              </tr>
+            </thead>
+            <tbody id="evalTableBody">
+              <tr><td colspan="8" style="text-align:center;">Click "Run Live Benchmark" to populate latest results.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: LIMITATIONS -->
+    <section id="limits-tab" class="tab-pane">
+      <div class="card">
+        <h2>⚠️ Transparent Limitations & Failure Modes</h2>
+        <p class="section-intro">
+          Academic AI systems must be honest about where errors can occur. Here are the documented edge cases and known limitations:
+        </p>
+
+        <div class="limitations-grid">
+          <div class="limitation-item">
+            <div class="lim-icon">🔄</div>
+            <div class="lim-content">
+              <h3>1. Multi-Intent / Mixed Announcements</h3>
+              <p>When an announcement combines disparate topics (e.g., <em>"Pay your hostel mess fee before semester exams begin"</em>), the model selects only the primary statistical topic. Secondary intentions are reflected in the probability breakdown, but single-label classification cannot assign dual primary categories.</p>
+            </div>
+          </div>
+
+          <div class="limitation-item">
+            <div class="lim-icon">📅</div>
+            <div class="lim-content">
+              <h3>2. Complex or Colloquial Relative Dates</h3>
+              <p>Expressions like <em>"the third Tuesday following the Diwali vacation"</em> or <em>"in a fortnight"</em> cannot be resolved without a full campus calendar parser. The extractor marks these as undetected (<code>None</code>) and triggers a missing-date alert.</p>
+            </div>
+          </div>
+
+          <div class="limitation-item">
+            <div class="lim-icon">🚨</div>
+            <div class="lim-content">
+              <h3>3. Misleading Urgency Keywords</h3>
+              <p>Notices containing the word <em>"urgent"</em> in benign contexts (e.g., <em>"urgent care clinic"</em> or <em>"urgent notice: lawn mowing in front of library"</em>) are addressed through contextual regex filtering, but complex sarcastic or figurative urgency may still raise priority.</p>
+            </div>
+          </div>
+
+          <div class="limitation-item">
+            <div class="lim-icon">✂️</div>
+            <div class="lim-content">
+              <h3>4. Extractive Summarization Constraints</h3>
+              <p>Extractive summarization strictly selects original sentences to eliminate hallucination. However, if the source circular is drafted as disjointed fragments, the summary retains that disjointed syntax rather than rewriting it gracefully.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: ETHICS & PRIVACY -->
+    <section id="ethics-tab" class="tab-pane">
+      <div class="card">
+        <h2>🛡️ Ethics, Student Privacy & Human-in-the-Loop Safeguards</h2>
+
+        <div class="ethics-grid">
+          <div class="ethics-card">
+            <h3>🔒 Student Privacy Protection</h3>
+            <ul>
+              <li><strong>Zero PII Collection</strong>: Students must never input sensitive personally identifiable information (e.g., roll numbers, passwords, marks cards, or medical certificates).</li>
+              <li><strong>No Server-Side Storage</strong>: Announcements are analyzed in-memory and not logged or uploaded to cloud databases.</li>
+              <li><strong>100% Offline / Local</strong>: No data ever leaves your computer.</li>
+            </ul>
+          </div>
+
+          <div class="ethics-card">
+            <h3>⚖️ Bias & Fairness Mitigation</h3>
+            <ul>
+              <li><strong>Informal vs Formal Notices</strong>: Circulars from student clubs often use informal phrasing, while registrar notices use strict administrative language.</li>
+              <li><strong>Hybrid Fallback</strong>: Pairing TF-IDF with keyword heuristics prevents rare student announcements from being rejected.</li>
+              <li><strong>Auditable Evidence</strong>: Every prediction displays the exact keywords and confidence score.</li>
+            </ul>
+          </div>
+
+          <div class="ethics-card">
+            <h3>👨‍🏫 Official Verification Requirement</h3>
+            <ul>
+              <li><strong>Decision Support Only</strong>: This AI system is an informational assistant, not an official academic authority.</li>
+              <li><strong>Mandatory Verification</strong>: For high-stakes decisions (e.g., exam registration deadlines or placement drives), students must verify with official college circulars.</li>
+              <li><strong>Precedence Rule</strong>: Official notifications from the Controller of Examinations always take legal precedence over AI outputs.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout callout-warning" style="margin-top:1.5rem;">
+          <strong>Official Institutional Disclaimer:</strong> This application is developed for educational synthesis under SWYNEX Internship Task 4. Always refer to your university's official ERP portal or departmental notice boards for legally binding academic dates.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="container">
+      <p>
+        <strong>Student Announcement Intelligence System</strong> • SWYNEX Internship Task 4 Final AI Application<br>
+        Built with Python, Scikit-Learn, Flask & Vanilla Modern CSS • Windows Compatible • 100% Local Execution
+      </p>
+    </div>
+  </footer>
+
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

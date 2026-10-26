@@ -1,0 +1,182 @@
+[
+  {
+    "id": "TC-01",
+    "description": "Standard Exam with Imminent Deadline",
+    "text": "The End-Semester Examination timetable for B.Tech Semester 5 is officially released. All students must download admit cards before Friday 5:00 PM at https://exam.university.edu.",
+    "expected_category": "Exam",
+    "expected_priority": "High",
+    "has_deadline": true,
+    "is_edge_case": false,
+    "input_type": "standard"
+  },
+  {
+    "id": "TC-02",
+    "description": "Exam Schedule Clash Notice with Immediate Action",
+    "text": "Notice regarding exam timetable clash: Students having two examination papers on the same day must report to the Controller of Examinations before 4:00 PM tomorrow with printed hall tickets.",
+    "expected_category": "Exam",
+    "expected_priority": "High",
+    "has_deadline": true,
+    "is_edge_case": false,
+    "input_type": "standard"
+  },
+  {
+    "id": "TC-03",
+    "description": "Coding Assignment Submission with Penalty Warning",
+    "text": "Submission of Machine Learning Assignment 3 on Neural Networks is due tomorrow by 11:59 PM on Google Classroom. Late submissions will receive zero marks.",
+    "expected_category": "Assignment",
+    "expected_priority": "High",
+    "has_deadline": true,
+    "is_edge_case": false,
+    "input_type": "standard"
+  },
+  {
+    "id": "TC-04",
+    "description": "Long-Term Project Assignment",
+    "text": "Database Management Systems homework assignment on SQL query optimization has been posted. Please submit your solutions by November 15 to turnitin@college.ac.in.",
+    "expected_category": "Assignment",
+    "expected_priority": "Medium",
+    "has_deadline": true,
+    "is_edge_case": false,
+    "input_type": "standard"
+  },
+  {
+    "id": "TC-05",
+    "description": "Inter-College Hackathon Event with Cash Prize",
+    "text": "Annual Inter-College Hackathon 'HackSphere 2026' registration is now open! Win cash prizes up to Rs 1,00,000. Register at https://hacksphere.dev before November 5.",
+    "expected_category": "Event",
+    "expected_priority": "Medium",
+    "has_deadline": true,
+    "is_edge_case": false,
+    "input_type": "standard"
+  },
+  {
+    "id": "TC-06",
+    "description": "Academic Guest Lecture Informational Notice",
+    "text": "The Department of Computer Science is hosting a guest lecture on 'Generative AI and Large Language Models' on Friday at 3:00 PM in the Main Auditorium. All welcome.",
+    "expected_category": "Event",
+    "expected_priority": "Low",
+    "has_deadline": false,
+    "is_edge_case": false,
+    "input_type": "standard"
+  },
+  {
+    "id": "TC-07",
+    "description": "Top Tier Campus Placement Drive with Deadline",
+    "text": "Microsoft Campus Placement Drive 2026: Eligible B.Tech 7th semester students with CGPA >= 8.0 must register on the CDC portal before tomorrow 12:00 PM.",
+    "expected_category": "Placement",
+    "expected_priority": "High",
+    "has_deadline": true,
+    "is_edge_case": false,
+    "input_type": "standard"
+  },
+  {
+    "id": "TC-08",
+    "description": "Campus Placement Training Session",
+    "text": "Placement training session on Resume Building and Mock Technical Interviews will be held tomorrow at 3:00 PM in Seminar Hall 2.",
+    "expected_category": "Placement",
+    "expected_priority": "Medium",
+    "has_deadline": false,
+    "is_edge_case": false,
+    "input_type": "standard"
+  },
+  {
+    "id": "TC-09",
+    "description": "Industrial Stipend Internship Application",
+    "text": "Winter Internship Opportunity at Tech Mahindra: 6-month industrial internship with a stipend of Rs 25,000/month. Apply before November 10 at intern@techmahindra.com.",
+    "expected_category": "Internship",
+    "expected_priority": "High",
+    "has_deadline": true,
+    "is_edge_case": false,
+    "input_type": "standard"
+  },
+  {
+    "id": "TC-10",
+    "description": "Research Internship Call for 3rd Year Students",
+    "text": "Summer Research Internship 2027 at Indian Institute of Science (IISc): Applications open for 3rd year students. Apply before December 15 with recommendation letters.",
+    "expected_category": "Internship",
+    "expected_priority": "Medium",
+    "has_deadline": true,
+    "is_edge_case": false,
+    "input_type": "standard"
+  },
+  {
+    "id": "TC-11",
+    "description": "Festival Holiday Circular",
+    "text": "College will remain closed on Monday, October 26 on account of Dussehra festival. All classes, labs, and office operations will be suspended.",
+    "expected_category": "Holiday",
+    "expected_priority": "Medium",
+    "has_deadline": false,
+    "is_edge_case": false,
+    "input_type": "standard"
+  },
+  {
+    "id": "TC-12",
+    "description": "Emergency Cyclone Weather Campus Closure",
+    "text": "Emergency Closure: Due to severe cyclone alert, the campus will be evacuated today by 2:00 PM. All evening laboratories and sports activities are cancelled.",
+    "expected_category": "Holiday",
+    "expected_priority": "High",
+    "has_deadline": true,
+    "is_edge_case": false,
+    "input_type": "standard"
+  },
+  {
+    "id": "TC-13",
+    "description": "Routine Administrative ID Card Collection Notice",
+    "text": "All students must collect their renewed biometric smart ID cards from the administrative office counter 4 between 10:00 AM and 1:00 PM on working days.",
+    "expected_category": "General",
+    "expected_priority": "Low",
+    "has_deadline": false,
+    "is_edge_case": false,
+    "input_type": "standard"
+  },
+  {
+    "id": "TC-14",
+    "description": "Missing Deadline and Unclear Timing Notice",
+    "text": "General guidelines for upcoming open elective courses will be published on the institute portal in due course. Students are advised to check back soon.",
+    "expected_category": "General",
+    "expected_priority": "Low",
+    "has_deadline": false,
+    "is_edge_case": true,
+    "input_type": "unclear_timing"
+  },
+  {
+    "id": "TC-15",
+    "description": "Misleading Urgency Keyword in Routine Context",
+    "text": "The urgent care first-aid health clinic is located on the ground floor next to the student cafeteria. Regular consultation hours are 9:00 AM to 5:00 PM.",
+    "expected_category": "General",
+    "expected_priority": "Low",
+    "has_deadline": false,
+    "is_edge_case": true,
+    "input_type": "misleading_urgency"
+  },
+  {
+    "id": "TC-16",
+    "description": "Out-of-Vocabulary Gibberish Text",
+    "text": "asdfghjk qwertyuiop zxcvbnm kljhgfds aoiweury 1234567890 testing out of vocabulary input.",
+    "expected_category": "General",
+    "expected_priority": "Low",
+    "has_deadline": false,
+    "is_edge_case": true,
+    "input_type": "gibberish"
+  },
+  {
+    "id": "TC-17",
+    "description": "Completely Empty Input String",
+    "text": "",
+    "expected_category": "General",
+    "expected_priority": "Low",
+    "has_deadline": false,
+    "is_edge_case": true,
+    "input_type": "empty"
+  },
+  {
+    "id": "TC-18",
+    "description": "Whitespace Only Input",
+    "text": "     \n\t   ",
+    "expected_category": "General",
+    "expected_priority": "Low",
+    "has_deadline": false,
+    "is_edge_case": true,
+    "input_type": "whitespace"
+  }
+]
