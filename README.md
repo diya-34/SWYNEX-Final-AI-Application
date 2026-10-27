@@ -392,8 +392,9 @@ git commit -m "feat: complete SWYNEX Final AI Application - Student Announcement
 # 5. Set default branch to main
 git branch -M main
 
-# 6. Add your GitHub repository remote (replace YOUR_USERNAME and YOUR_REPO with your actual GitHub details)
-git remote add origin https://github.com/YOUR_USERNAME/SWYNEX-Final-AI-Application.git
+# 6. Set your GitHub repository remote
+git remote set-url origin https://github.com/diya-34/SWYNEX-Final-AI-Application.git
+# (or git remote add origin https://github.com/diya-34/SWYNEX-Final-AI-Application.git if initializing for the first time)
 
 # 7. Push to GitHub
 git push -u origin main
