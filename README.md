@@ -368,7 +368,7 @@ Before submitting Task 4 for the SWYNEX Internship, verify the following items:
 - [x] **Error Handling**: Gracefully handles empty strings, whitespace, non-strings, and 4,000+ character inputs.
 - [x] **Automated Tests**: All 35 tests pass (`python -m pytest -v`).
 - [x] **Empirical Evaluation**: Evaluation results are verified and saved in `evaluation/evaluation_results.csv`.
-- [x] **Limitations & Ethics**: Documented in depth in both README and the web application tabs.
+- [x] **Limitations & Ethics**: Documented in depth in both README and the web application tabs..
 
 ---
 
@@ -408,5 +408,6 @@ git push -u origin main
 - **Task**: Task 4 – Final AI Application
 - **Project Title**: Student Announcement Intelligence System
 - **Repository**: `SWYNEX-Final-AI-Application`
-#   S W Y N E X - F i n a l - A I - A p p l i c a t i o n  
+#   S W Y N E X - F i n a l - A I - A p p l i c a t i o n 
+ 
  
