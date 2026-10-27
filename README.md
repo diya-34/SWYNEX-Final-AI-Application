@@ -407,3 +407,5 @@ git push -u origin main
 - **Task**: Task 4 – Final AI Application
 - **Project Title**: Student Announcement Intelligence System
 - **Repository**: `SWYNEX-Final-AI-Application`
+#   S W Y N E X - F i n a l - A I - A p p l i c a t i o n  
+ 
